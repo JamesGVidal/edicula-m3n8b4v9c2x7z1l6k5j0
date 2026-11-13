@@ -974,10 +974,11 @@ function makeProps(){
     B(g,w,0.3,0.02,cx,0.62,5.89,C.cab); B(g,w-0.04,0.02,0.5,cx,0.5,6.15,C.cab); B(g,0.02,0.1,0.5,d.x0+0.03,0.56,6.15,C.cab); B(g,0.02,0.1,0.5,d.x1-0.03,0.56,6.15,C.cab); B(g,w,0.014,0.008,cx,0.775,5.878,'#1d1f22');
     mov['d'+i]={open:false,t:0,apply:t=>{ g.position.z=-0.42*t; }}; });
   // frigobar
-  { const w=FR.x1-FR.x0, cx=(FR.x0+FR.x1)/2, cz=(FR.zf+FR.zb)/2, d=FR.zb-FR.zf, wh='#f6f6f4';
+  { const w=FR.x1-FR.x0, cx=(FR.x0+FR.x1)/2, cz=(FR.zf+FR.zb)/2, d=FR.zb-FR.zf, wh='#1d1f22';
     B(dyn,w,FR.h,0.02,cx,FR.h/2,FR.zb-0.01,wh); B(dyn,0.02,FR.h,d,FR.x0+0.01,FR.h/2,cz,wh); B(dyn,0.02,FR.h,d,FR.x1-0.01,FR.h/2,cz,wh); B(dyn,w,0.02,d,cx,FR.h-0.01,cz,wh); B(dyn,w,0.03,d,cx,0.015,cz,wh); B(dyn,w-0.04,0.012,d-0.06,cx,0.42,cz,'#dfe6ea');
     B(dyn,0.2,0.02,0.02,cx,FR.h-0.04,FR.zb-0.05,new THREE.MeshBasicMaterial({color:0xeaf6ff}));
-    const piv=new THREE.Group(); piv.position.set(FR.x1,0,FR.zf); dyn.add(piv); B(piv,w,FR.h-0.02,0.03,-w/2,FR.h/2,-0.015,wh); B(piv,0.02,0.3,0.02,-w+0.05,0.55,-0.04,C.steel);
+    const piv=new THREE.Group(); piv.position.set(FR.x1,0,FR.zf); dyn.add(piv); const dh=FR.h-0.02, fw=0.045; B(piv,w,fw,0.03,-w/2,FR.h/2+dh/2-fw/2,-0.015,wh); B(piv,w,fw,0.03,-w/2,FR.h/2-dh/2+fw/2,-0.015,wh); B(piv,fw,dh-2*fw,0.03,-fw/2,FR.h/2,-0.015,wh); B(piv,fw,dh-2*fw,0.03,-w+fw/2,FR.h/2,-0.015,wh);
+    const gd=B(piv,w-2*fw,dh-2*fw,0.012,-w/2,FR.h/2,-0.015,mat(C.glass)); gd.castShadow=false; gd.renderOrder=2; B(piv,0.02,0.3,0.02,-w+0.022,0.5,-0.04,C.steel);
     mov.fr={open:false,t:0,apply:t=>{ piv.rotation.y=-1.7*t; }}; fixed.push({mn:[FR.x0,0,FR.zf],mx:[FR.x1,FR.h,FR.zb]}); }
   // lixeira
   Cy(dyn,0.15,0.5,0.35,0.25,5.55,'#3a3a3a','y'); Cy(dyn,0.16,0.03,0.35,0.515,5.55,'#2a2c2e','y'); fixed.push({mn:[0.2,0,5.4],mx:[0.5,0.53,5.7]});
